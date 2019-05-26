@@ -6,4 +6,10 @@ from .models import Course
 def home(request):
     college = Course.objects.all()
     context = {'allCourses': college}
-    return render(request, 'curso.html', context)
+    return render(request, 'course.html', context)
+
+
+def description(request, courseId):
+    detailCourse = Course.objects.get(idCourse=courseId)
+    context = {'details': detailCourse}
+    return render(request, 'detailsCourse.html', context)
