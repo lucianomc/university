@@ -10,3 +10,11 @@ class Course(models.Model):
 
     def __str__(self):
         return self.nameCourse
+
+
+class Matter(models.Model):
+    idMatter = models.AutoField(primary_key=True)
+    nameMatter = models.CharField(max_length=32)
+    descriptionMatter = models.TextField()
+    numberStudent = models.IntegerField()
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
