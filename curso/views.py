@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.detail import DetailView
 from .models import Course
 # Create your views here.
 
@@ -13,3 +14,8 @@ def description(request, courseId):
     detailCourse = Course.objects.get(idCourse=courseId)
     context = {'details': detailCourse}
     return render(request, 'detailsCourse.html', context)
+
+
+class CourseDetailView(DetailView):
+    model = Course
+

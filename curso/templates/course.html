@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Universidade</title>
 </head>
 <body>
     <h1>Cursos</h1>
     <ul>
         {% for course in allCourses  %}
-            <li>{{course}}</li>
+            <li>
+                <a href="{% url 'curso:description' course.idCourse %}">
+                    {{ course }}
+                </a>
+            </li>
         {% endfor %}
     </ul>
 </body>
 </html>
+

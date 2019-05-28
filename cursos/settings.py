@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Qual a diferença entre os dois abaixo?
+
     'curso.apps.CursoConfig',
+    'cursos',
 ]
 
 MIDDLEWARE = [
