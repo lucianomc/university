@@ -5,7 +5,7 @@ from .models import Course
 
 
 def home(request):
-    college = Course.objects.all()
+    college = Course.objects.all().order_by('nameCourse')
     context = {'allCourses': college}
     return render(request, 'course.html', context)
 
@@ -18,4 +18,3 @@ def description(request, courseId):
 
 class CourseDetailView(DetailView):
     model = Course
-

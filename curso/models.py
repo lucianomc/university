@@ -17,7 +17,7 @@ class Matter(models.Model):
     nameMatter = models.CharField(max_length=32)
     descriptionMatter = models.TextField()
     numberStudent = models.IntegerField()
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.OneToOneField(Course, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nameMatter
