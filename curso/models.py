@@ -28,13 +28,17 @@ class Student(models.Model):
     nameStudent = models.CharField(max_length=32)
     matter = models.ManyToManyField(Matter)
 
+    def __str__(self):
+        return self.nameStudent
+
 
 class Teacher(models.Model):
     idTeacher = models.AutoField(primary_key=True)
     nameTeacher = models.CharField(max_length=64)
     matter = models.OneToOneField(Matter, on_delete=models.CASCADE)
 
-    # Como eu faço pra retornar só os campos de materia depois que selecionar o curso?
+    def __str__(self):
+        return self.nameTeacher
 
-    #def __str__(self):
-    #    return self.nameTeacher
+    # Como eu faço pra retornar só os campos de materia
+    # depois que selecionar o curso?
