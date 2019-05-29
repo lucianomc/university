@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Course
+from .models import Matter
 from django.http import HttpResponse, Http404
 # Create your views here.
 
@@ -19,3 +20,11 @@ def description(request, courseId):
 
     context = {'details': detailCourse, 'matters': mattersCourse}
     return render(request, 'detailsCourse.html', context)
+
+
+def matterDesc(request, matterId):
+    matter = Matter.objects.get(idMatter=matterId)
+    studentMatter = matter.student_set.all().order_by('nameStudent')
+
+    context = {'students': studentMatter, 'matter': matter}
+    return render(request, 'detailsMatter.html', context)

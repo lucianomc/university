@@ -13,9 +13,12 @@
         <b><h3>Matérias:</h3></b>  
             <ul>
                 {% for allMatters in matters %}
-                    <li>
-                    {{allMatters}}
-                    </li>
+                <li>
+                    <a href="">
+                        {{allMatters}}
+                    </a>
+                </li>
+                    <p>{{allMatters.descriptionMatter}}</p>
                 {% endfor %}
             </ul>
         </body>
