@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from .models import Course
+from django.http import HttpResponse, Http404
 # Create your views here.
 
 
@@ -11,7 +12,11 @@ def home(request):
 
 
 def description(request, courseId):
-    detailCourse = Course.objects.get(idCourse=courseId)
+    try:
+        detailCourse = Course.objects.get(idCourse=courseId)
+    except Course.DoesNotExist:
+        raise Http404("Nenhum curso foi encontrado com esse Id")
+
     context = {'details': detailCourse}
     return render(request, 'detailsCourse.html', context)
 
