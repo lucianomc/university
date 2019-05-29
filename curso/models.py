@@ -23,6 +23,11 @@ class Matter(models.Model):
         return self.nameMatter
 
 
+class Student(models.Model):
+    idStudent = models.AutoField(primary_key=True)
+    nameStudent = models.CharField(max_length=32)
+    matter = models.ManyToManyField(Matter)
+
 # class Teacher(models.Model):
 #     idTeacher = models.AutoField(primary_key=True)
 #     nameTeacher = models.CharField(max_length=64)
