@@ -8,8 +8,8 @@ class Course(models.Model):
     nameCourse = models.CharField(max_length=45)
     descriptionCourse = models.TextField()
 
-    #def __str__(self):
-    #    return self.nameCourse
+    def __str__(self):
+       return self.nameCourse
 
 
 # class Matter(models.Model):
