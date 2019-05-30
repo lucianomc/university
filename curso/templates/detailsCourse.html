@@ -14,7 +14,7 @@
             <ul>
                 {% for allMatters in matters %}
                 <li>
-                    <a href="">
+                    <a href="{% url 'curso:matterDesc' allMatters.idMatter %}">
                         {{allMatters}}
                     </a>
                 </li>
