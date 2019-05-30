@@ -14,10 +14,15 @@ class Course(models.Model):
 
 class Matter(models.Model):
     idMatter = models.AutoField(primary_key=True)
-    nameMatter = models.CharField(max_length=32)
-    descriptionMatter = models.TextField()
-    numberStudent = models.IntegerField()
+    nameMatter = models.CharField(
+        max_length=32, 
+        help_text='Nome da Matéria')
+    descriptionMatter = models.TextField(
+        help_text='Uma breve descrição da ementa')
+    numberStudent = models.IntegerField(
+        help_text='O máximo de alunos por turma')
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    #student = models.ManyToManyField('Student', through='Student_has_matter')
 
     def __str__(self):
         return self.nameMatter
@@ -25,8 +30,9 @@ class Matter(models.Model):
 
 class Student(models.Model):
     idStudent = models.AutoField(primary_key=True)
-    nameStudent = models.CharField(max_length=32)
-    matter = models.ManyToManyField(Matter)
+    nameStudent = models.CharField(
+        max_length=32, 
+        help_text='Nome do Aluno')
 
     def __str__(self):
         return self.nameStudent
@@ -34,11 +40,21 @@ class Student(models.Model):
 
 class Teacher(models.Model):
     idTeacher = models.AutoField(primary_key=True)
-    nameTeacher = models.CharField(max_length=64)
-    matter = models.OneToOneField(Matter, on_delete=models.CASCADE)
+    nameTeacher = models.CharField(
+        max_length=64, 
+        help_text='Nome do Professor')
+    matter = models.OneToOneField(
+        Matter, 
+        on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nameTeacher
 
     # Como eu faço pra retornar só os campos de materia
     # depois que selecionar o curso?
+
+
+# class Student_has_matter(models.Model):
+#     note = models.DecimalField(max_digits=2, decimal_places=1)
+#     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE)
+#     student = models.ForeignKey('Student', on_delete=models.CASCADE)
