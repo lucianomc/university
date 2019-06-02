@@ -11,6 +11,8 @@ class Course(models.Model):
     def __str__(self):
         return self.nameCourse
 
+# E o UUIDField
+
 
 class Matter(models.Model):
     idMatter = models.AutoField(primary_key=True)
@@ -22,10 +24,11 @@ class Matter(models.Model):
     numberStudent = models.IntegerField(
         help_text='O máximo de alunos por turma')
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    #student = models.ManyToManyField('Student', through='Student_has_matter')
+    students = models.ManyToManyField('Student', through='StudentHasMatter')
 
     def __str__(self):
         return self.nameMatter
+        #return f'{self.nameMatter} ({self.course})'
 
 
 class Student(models.Model):
@@ -46,6 +49,7 @@ class Teacher(models.Model):
     matter = models.OneToOneField(
         Matter, 
         on_delete=models.CASCADE)
+    #Poderia usar models.SET_NULL?  
 
     def __str__(self):
         return self.nameTeacher
@@ -54,7 +58,7 @@ class Teacher(models.Model):
     # depois que selecionar o curso?
 
 
-# class Student_has_matter(models.Model):
-#     note = models.DecimalField(max_digits=2, decimal_places=1)
-#     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE)
-#     student = models.ForeignKey('Student', on_delete=models.CASCADE)
+class StudentHasMatter(models.Model):
+    note = models.DecimalField(max_digits=2, decimal_places=1)
+    matter = models.ForeignKey('Matter', on_delete=models.DO_NOTHING)
+    student = models.ForeignKey('Student', on_delete=models.DO_NOTHING)
