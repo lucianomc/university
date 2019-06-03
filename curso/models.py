@@ -62,3 +62,6 @@ class StudentHasMatter(models.Model):
     note = models.DecimalField(max_digits=2, decimal_places=1)
     matter = models.ForeignKey('Matter', on_delete=models.DO_NOTHING)
     student = models.ForeignKey('Student', on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return f"{self.student} - {self.note}"

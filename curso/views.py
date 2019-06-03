@@ -24,7 +24,7 @@ def description(request, courseId):
 
 def matterDesc(request, matterId):
     matter = Matter.objects.get(idMatter=matterId)
-    studentMatter = matter.student_set.all().order_by('nameStudent')
+    studentMatter = matter.studenthasmatter_set.all().order_by('student')
 
     context = {'students': studentMatter, 'matter': matter}
     return render(request, 'detailsMatter.html', context)
