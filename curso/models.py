@@ -17,7 +17,7 @@ class Course(models.Model):
 class Matter(models.Model):
     idMatter = models.AutoField(primary_key=True)
     nameMatter = models.CharField(
-        max_length=32, 
+        max_length=32,
         help_text='Nome da Matéria')
     descriptionMatter = models.TextField(
         help_text='Uma breve descrição da ementa')
@@ -34,7 +34,7 @@ class Matter(models.Model):
 class Student(models.Model):
     idStudent = models.AutoField(primary_key=True)
     nameStudent = models.CharField(
-        max_length=32, 
+        max_length=32,
         help_text='Nome do Aluno')
 
     def __str__(self):
@@ -44,12 +44,12 @@ class Student(models.Model):
 class Teacher(models.Model):
     idTeacher = models.AutoField(primary_key=True)
     nameTeacher = models.CharField(
-        max_length=64, 
+        max_length=64,
         help_text='Nome do Professor')
     matter = models.OneToOneField(
-        Matter, 
+        Matter,
         on_delete=models.CASCADE)
-    #Poderia usar models.SET_NULL?  
+    #Poderia usar models.SET_NULL?
 
     def __str__(self):
         return self.nameTeacher
@@ -64,4 +64,7 @@ class StudentHasMatter(models.Model):
     student = models.ForeignKey('Student', on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return f"{self.student} - {self.note}"
+        return f"{self.student}"
+
+    def note(self):
+        return self.note

@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detalhes da matéria
-    </title>
+    <title>Document</title>
 </head>
 <body>
-    <h3>{{ matter }}</h3>
-    <ul>
-        {% for allStudents in students %}
-            <li>{{ allStudents }}</li>
-        {% endfor %}
-    </ul>
+    <h1>Novo Curso</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Salvar</button>
+    </form>
 </body>
 </html>
