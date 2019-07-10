@@ -9,7 +9,7 @@
 <body>
     <h1>Cursos</h1>
     <ul>
-        {% for course in allCourses  %}
+        {% for course in object_list  %}
             <li>
                 <a href="{% url 'curso:description' course.idCourse %}">
                     {{ course }}
@@ -18,7 +18,15 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'curso:newCourse'%}">Novo Curso</a>
+    <p>
+        <a href="{% url 'curso:newCourse'%}">Novo Curso</a>
+    </p>
+    <p>
+        <a href="{% url 'curso:nova_materia'%}">Nova Matéria</a>
+    </p>
+    <p>
+        <a href="{% url 'curso:novo_estudante'%}">Novo Estudante</a>
+    </p>
 </body>
 </html>
 

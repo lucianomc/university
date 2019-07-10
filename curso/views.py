@@ -1,13 +1,42 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
-from django.http import HttpResponse, Http404
+from django.http import Http404, HttpResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, DetailView
 
-from .models import Course
-from .models import Matter
-
-from .form import CourseForm
+from .forms import CourseForm
+from .models import Course, Matter, Student
 
 # Create your views here.
+
+
+class CourseCreateView(CreateView):
+    model = Course
+    success_url = reverse_lazy('curso:home')
+    form_class = CourseForm
+
+
+class CourseListView(ListView):
+    model = Course
+
+
+class CourseDetailView(DetailView):
+    model = Course
+
+
+class MatterCreateView(CreateView):
+    model = Matter
+    success_url = reverse_lazy('curso:home')
+    fields = '__all__'
+
+
+class MatterListView(ListView):
+    model = Matter
+
+
+class StudentCreateView(CreateView):
+    model = Student
+    success_url = reverse_lazy('curso:home')
+    fields = '__all__'
 
 
 def home(request):
@@ -39,13 +68,13 @@ def matterDesc(request, matterId):
 #    pass
 
 
-def new_course(request):
-    data = {}
-    form = CourseForm(request.POST or None)
+# def new_course(request):
+#     data = {}
+#     form = CourseForm(request.POST or None)
 
-    if form.is_valid():
-        form.save()
-        return redirect('curso:home')
+#     if form.is_valid():
+#         form.save()
+#         return redirect('curso:home')
 
-    data['form'] = form
-    return render(request, 'curso/newcourse.html', data)
+#     data['form'] = form
+#     return render(request, 'curso/newcourse.html', data)
