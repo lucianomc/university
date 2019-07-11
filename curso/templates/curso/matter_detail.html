@@ -11,6 +11,7 @@
 <body>
     <h3>{{ object }}</h3>
     <ul>
+        <p>Professor: {{object.teacher}}</p>
         <p>Alunos</p>
         {% for students in object.students.all %}
             <li>

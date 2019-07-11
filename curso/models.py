@@ -44,9 +44,6 @@ class Teacher(models.Model):
     def __str__(self):
         return self.nameTeacher
 
-    # Como eu faço pra retornar só os campos de materia
-    # depois que selecionar o curso?
-
 
 class Student(models.Model):
     idStudent = models.AutoField(primary_key=True)
@@ -59,12 +56,9 @@ class Student(models.Model):
 
 
 class StudentHasMatter(models.Model):
-    note = models.DecimalField(max_digits=2, decimal_places=1)
     matter = models.ForeignKey('Matter', on_delete=models.DO_NOTHING)
     student = models.ForeignKey('Student', on_delete=models.DO_NOTHING)
+    note = models.DecimalField(max_digits=4, decimal_places=2)
 
     def __str__(self):
         return f"{self.student}"
-
-    def note(self):
-        return self.note
