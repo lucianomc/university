@@ -28,17 +28,7 @@ class Matter(models.Model):
 
     def __str__(self):
         return self.nameMatter
-        #return f'{self.nameMatter} ({self.course})'
-
-
-class Student(models.Model):
-    idStudent = models.AutoField(primary_key=True)
-    nameStudent = models.CharField(
-        max_length=32,
-        help_text='Nome do Aluno')
-
-    def __str__(self):
-        return self.nameStudent
+        # return f'{self.nameMatter} ({self.course})'
 
 
 class Teacher(models.Model):
@@ -49,13 +39,23 @@ class Teacher(models.Model):
     matter = models.OneToOneField(
         Matter,
         on_delete=models.CASCADE)
-    #Poderia usar models.SET_NULL?
+    # Poderia usar models.SET_NULL?
 
     def __str__(self):
         return self.nameTeacher
 
     # Como eu faço pra retornar só os campos de materia
     # depois que selecionar o curso?
+
+
+class Student(models.Model):
+    idStudent = models.AutoField(primary_key=True)
+    nameStudent = models.CharField(
+        max_length=32,
+        help_text='Nome do Aluno')
+
+    def __str__(self):
+        return self.nameStudent
 
 
 class StudentHasMatter(models.Model):

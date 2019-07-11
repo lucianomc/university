@@ -3,7 +3,8 @@ from django.urls import path
 
 from . import views
 from .views import (CourseCreateView, CourseDetailView, CourseListView,
-                    MatterCreateView, MatterListView, StudentCreateView)
+                    MatterCreateView, MatterDetailView, MatterListView,
+                    StudentCreateView)
 
 app_name = 'curso'
 
@@ -12,11 +13,11 @@ urlpatterns = [
     # path('', views.home, name='home'),
     path('', CourseListView.as_view(), name='home'),
     path('course/<int:pk>/', CourseDetailView.as_view(), name='description'),
-    path('matter/<int:matterId>/', views.matterDesc, name='matterDesc'),
+    path('matter/<int:pk>/', MatterDetailView.as_view(), name='matterDesc'),
     path('novocurso/', CourseCreateView.as_view(), name='newCourse'),
     path('novamateria/', MatterCreateView.as_view(), name='nova_materia'),
     path('novoestudante/', StudentCreateView.as_view(), name='novo_estudante'),
-    #path('student/<int:studentId>/', views.StudentDesc, name='StudentDesc'),
+    # path('student/<int:studentId>/', views.StudentDesc, name='StudentDesc'),
 ]
 
 # como colocar uma url atrás da outra?

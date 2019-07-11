@@ -9,12 +9,12 @@
     </title>
 </head>
 <body>
-    <h3>{{ matter }}</h3>
+    <h3>{{ object }}</h3>
     <ul>
         <p>Alunos</p>
-        {% for allStudents in students %}
+        {% for students in object.students.all %}
             <li>
-                {{ allStudents }}
+                {{ students }}
             </li>
         {% endfor %}    
     </ul>

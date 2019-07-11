@@ -33,6 +33,10 @@ class MatterListView(ListView):
     model = Matter
 
 
+class MatterDetailView(DetailView):
+    model = Matter
+
+
 class StudentCreateView(CreateView):
     model = Student
     success_url = reverse_lazy('curso:home')
