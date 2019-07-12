@@ -43,10 +43,14 @@ class StudentCreateView(CreateView):
     fields = '__all__'
 
 
-def home(request):
-    college = Course.objects.all().order_by('nameCourse')
-    context = {'allCourses': college}
-    return render(request, 'curso/course.html', context)
+class StudentDetailView(DetailView):
+    model = Student
+
+
+# def home(request):
+#     college = Course.objects.all().order_by('nameCourse')
+#     context = {'allCourses': college}
+#     return render(request, 'curso/course.html', context)
 
 
 def description(request, courseId):
