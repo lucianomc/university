@@ -11,5 +11,6 @@
                 <a href="{%url 'curso:matterDesc' matter.idMatter%}">{{matter}}</a>
             </p>
         {%endfor%}
+    <a href="{% url 'curso:course_edit' object.pk%}">Editar</a>
 
 {%endblock%}

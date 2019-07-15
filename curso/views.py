@@ -2,6 +2,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic.edit import UpdateView
 
 from .forms import CourseForm
 from .models import Course, Matter, Student
@@ -23,6 +24,12 @@ class CourseDetailView(DetailView):
     model = Course
 
 
+class CourseUpdateView(UpdateView):
+    model = Course
+    fields = '__all__'
+    success_url = reverse_lazy('curso:home')
+
+
 class MatterCreateView(CreateView):
     model = Matter
     success_url = reverse_lazy('curso:home')
@@ -35,6 +42,12 @@ class MatterListView(ListView):
 
 class MatterDetailView(DetailView):
     model = Matter
+
+
+class MatterUpdateView(UpdateView):
+    model = Matter
+    success_url = reverse_lazy('curso:home')
+    fields = '__all__'
 
 
 class StudentCreateView(CreateView):
