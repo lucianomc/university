@@ -1,11 +1,15 @@
-FROM python
+FROM python:3
 
-WORKDIR /usr/src/app
+ENV PYTHONUNBUFFERED 1
+
+RUN mkdir /code
+
+WORKDIR /code
 
 RUN apt update -y
 
-RUN pip install pipenv
+COPY requirements.txt /code/
 
-EXPOSE 8000
+RUN pip install -r requirements.txt
 
-ENTRYPOINT [ "bash" ]
+COPY . /code/
